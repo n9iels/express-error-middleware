@@ -5,8 +5,5 @@ export declare type ExpressLoggerOptions = {
 };
 export declare type TextColor = "red" | "yellow" | "blue";
 export declare type LogLevel = "error" | "warning" | "info";
-declare const _default: {
-    errorHandlingMiddleware: (options: ExpressLoggerOptions) => (err: any, req: Express.Request, res: Express.Response, next: Express.NextFunction) => void;
-    log: (kind: LogLevel, text: string) => void;
-};
-export default _default;
+export declare function errorHandlingMiddleware(options: ExpressLoggerOptions): (err: any, req: Express.Request, res: Express.Response, next: Express.NextFunction) => void;
+export declare function log(kind: LogLevel, text: string): void;
