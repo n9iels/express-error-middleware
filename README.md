@@ -35,9 +35,10 @@ app.use((err: Error, req: Express.Request, res: Express.Response, next: Express.
 
 ### Options
 The following configuration options are available:
-| Option        | Default                        | Description                                                                          |
-| ------------- |------------------------------- | ------------------------------------------------------------------------------       |
-| logLevel      | `["error", "warning", "info"]` | The level of logging in the console. Only errors of the given levels will be logged. |
+
+| Option   | Default                        | Description                                                                          |
+| -------- | ------------------------------ | ------------------------------------------------------------------------------------ |
+| logLevel | `["error", "warning", "info"]` | The level of logging in the console. Only errors of the given levels will be logged. |
 
 ## Error handling
 The middleware will use the data given to the `next()` function to log and return an error. The return error will be a JSON object with a `status` and `message` attribute.
