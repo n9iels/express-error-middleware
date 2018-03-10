@@ -1,13 +1,13 @@
 import * as Express from "express"
 import * as Statuses from "statuses"
 
-export type ExpressLoggerOptions = {
+export type ErrorHandlingMiddlewareOptions = {
     logLevel: LogLevel[]
 }
 export type TextColor = "red" | "yellow" | "blue"
 export type LogLevel = "error" | "warning" | "info"
 
-class ExpressErrorMiddleware {
+class ErrorHandlingMiddleware {
     color(color: TextColor, text: string): string {
         switch (color) {
             case "red":
@@ -59,14 +59,14 @@ class ExpressErrorMiddleware {
     }
 }
 
-export function errorHandlingMiddleware(options: ExpressLoggerOptions) {
+export function handleErrors(options: ErrorHandlingMiddlewareOptions) {
     let logLevel: LogLevel[] = options.logLevel ? options.logLevel : ["error", "warning", "info"]
 
     return (err: any, req: Express.Request, res: Express.Response, next: Express.NextFunction) => {
-        new ExpressErrorMiddleware().middleware(err, req, res, next, logLevel)
+        new ErrorHandlingMiddleware().middleware(err, req, res, next, logLevel)
     }
 }
 
 export function log(kind: LogLevel, text: string) {
-    new ExpressErrorMiddleware().log(kind, text)
+    new ErrorHandlingMiddleware().log(kind, text)
 }

@@ -8,8 +8,7 @@
     "definition": "./dist/express-error-middleware.d.ts"
   },
   "scripts": {
-    "build": "tsc",
-    "pub": "tsc && npm publish"
+    "build": "tsc"
   },
   "keywords": [
     "express"
