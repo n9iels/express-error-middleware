@@ -7,7 +7,7 @@ export type ExpressLoggerOptions = {
 export type TextColor = "red" | "yellow" | "blue"
 export type LogLevel = "error" | "warning" | "info"
 
-class ExpressLogger {
+class ExpressErrorMiddleware {
     color(color: TextColor, text: string): string {
         switch (color) {
             case "red":
@@ -59,15 +59,14 @@ class ExpressLogger {
     }
 }
 
-export default {
-    errorHandlingMiddleware: (options: ExpressLoggerOptions) => {
-        let logLevel: LogLevel[] = options.logLevel ? options.logLevel : ["error", "warning", "info"]
+export function errorHandlingMiddleware(options: ExpressLoggerOptions) {
+    let logLevel: LogLevel[] = options.logLevel ? options.logLevel : ["error", "warning", "info"]
 
-        return (err: any, req: Express.Request, res: Express.Response, next: Express.NextFunction) => {
-            new ExpressLogger().middleware(err, req, res, next, logLevel)
-        }
-    },
-    log: (kind: LogLevel, text: string) => {
-        new ExpressLogger().log(kind, text)
+    return (err: any, req: Express.Request, res: Express.Response, next: Express.NextFunction) => {
+        new ExpressErrorMiddleware().middleware(err, req, res, next, logLevel)
     }
+}
+
+export function log(kind: LogLevel, text: string) {
+    new ExpressErrorMiddleware().log(kind, text)
 }
