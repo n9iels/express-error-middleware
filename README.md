@@ -2,11 +2,6 @@
 Express Error Middleware is a middleware for Express to handle and log errors in a REST API. When a error occures, it will log the error in the console and send a JSON object to the client.
 
 ## Installation and usage
-Install the package with NPM
-```
-npm install --save express-error-middleware
-```
-
 Use one of the following example below to load and configure the middleware
 
 JavaScript example:
